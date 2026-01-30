@@ -4,11 +4,18 @@ This guide provides basic instructions for setting up and running the automation
 ## Setup Prerequisites
 1. Clone or copy the project folder to your machine.
 2. chmod 777 install_requirements.py
-3. Install dependencies using following steps:
-    a. sed -i 's/\r$//' install_requirements.py
-    b. ./install_requirements.py
-4. chmod +x /home/ubuntu/.wdm/drivers/chromedriver/linux64/144.0.7559.96/chromedriver-linux64/chromedriver
-5. source .venv/bin/activate ((Recommended) Create and activate a Python virtual environment)
+3. sed -i 's/\r$//' install_requirements.py
+4. (Recommended) Create and activate a Python virtual environment:
+   if [ ! -d ".venv" ]; then
+     python3 -m venv .venv
+   fi
+   source .venv/bin/activate
+5. ./install_requirements.py (run twice if needed)
+6. chmod +x /home/ubuntu/.wdm/drivers/chromedriver/linux64/144.0.7559.96/chromedriver-linux64/chromedriver
+7. python3 main.py
+
+# Or simply run the provided script:
+./run_all.sh
 
 
 ## Configuration
