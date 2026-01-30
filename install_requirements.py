@@ -186,13 +186,37 @@ def download_and_install_python_linux():
     print("Python 3.12 built and installed.")
 
 
-
+def ensure_python312():
+    exe = is_python312_installed()
+    if exe:
+        print(f"Python 3.12 found: {exe}")
+        # If not current interpreter, re-launch script with 3.12
+        if sys.version_info[:2] != (3, 12):
+            print("Re-launching script with Python 3.12...")
+            os.execv(exe, [exe] + sys.argv)
+        return
+    print("Python 3.12 not found. Installing...")
+    if platform.system() == "Windows":
+        download_and_install_python_windows()
+    elif platform.system() == "Linux":
+        download_and_install_python_linux()
+    else:
+        print("Unsupported OS for automatic Python installation. Please install Python 3.12 manually.")
+        sys.exit(1)
+    # After install, try to find and re-launch
+    exe = is_python312_installed()
+    if exe:
+        print("Re-launching script with newly installed Python 3.12...")
+        os.execv(exe, [exe] + sys.argv)
+    else:
+        print("Python 3.12 installation failed. Please install manually.")
+        sys.exit(1)
 
 
 def in_venv():
     return (
-        hasattr(sys, 'real_prefix') or
-        (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix)
+            hasattr(sys, 'real_prefix') or
+            (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix)
     )
 
 
@@ -274,7 +298,7 @@ def fix_chromedriver_permissions():
 
 def main():
     check_line_endings()
-    #ensure_python312()
+    ensure_python312()
     ensure_venv()
     check_python_version()
     install_packages()
