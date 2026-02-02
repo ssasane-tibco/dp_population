@@ -3,6 +3,7 @@
 
 # Step 1: Make install_requirements.py executable
 chmod 777 install_requirements.py
+echo "Made install_requirements.py executable."
 
 # Step 2: Remove Windows carriage returns
 sed -i 's/\r$//' install_requirements.py
