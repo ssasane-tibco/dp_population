@@ -1,6 +1,3 @@
-# Configuration with credentials
-config.json
-
 # Generated command files
 dataplane_*_commands.txt
 *_commands.txt

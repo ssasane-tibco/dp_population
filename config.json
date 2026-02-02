@@ -1,0 +1,125 @@
+{
+    "admin_host": "https://admin.cp1-my.localhost.dataplanes.pro",
+    "idp_host": "https://admin.cp1-my.localhost.dataplanes.pro",
+    "credentials": {
+        "username": "cp-test@tibco.com",
+        "password": "Tibco@2024"
+    },
+    "target_prefixes": [
+        {"prefix": "pre", "user_email": "use@tibco.com"},
+        {"prefix": "pre1", "user_email": "use1@tibco.com"}
+    ],
+    "new_user_details": {
+        "firstName": "Tom",
+        "lastName": "Krause",
+        "password": "Tibco@2025"
+    },
+    "user_query_params": {
+        "order-by": "",
+        "page": "1",
+        "limit": "20",
+        "person": ""
+    },
+    "dataplane_config": {
+        "dpCount": 1,
+        "name": "Dp-Auto-Test",
+        "description": "Automated dataplane registration",
+        "namespace": "mydp-ns",
+        "serviceAccountName": "mydp-sa",
+        "helmResourceInstanceId": "",
+        "isFluentBitEnabled": true,
+        "enableClusterScopedPerm": true,
+        "customContainerRegistry": false,
+        "helmChartName": "dp-core-infrastructure",
+        "helmChartVersion": "1.2.0",
+        "helmRepoName": "tibco-platform",
+        "helmRepoUrl": "https://tibcosoftware.github.io/tp-helm-charts"
+    },
+    "activation_server_config": {
+        "name": "https://na1pcpfhelmcm01.tibco.com:7070",
+        "url": "https://na1pcpfhelmcm01.tibco.com:7070",
+        "version": "1.8.0"
+    },
+    "dataplane_status_check": {
+        "enabled": true,
+        "max_wait_seconds": 600,
+        "poll_interval_seconds": 20
+    },
+    "dataplane_resources_config": {
+        "create_resources": true,
+        "storage": {
+            "name": "dpstorage",
+            "description": "Dataplane Storage",
+            "storage_class_name": "hostpath"
+        },
+        "ingress": {
+            "name": "dpingress",
+            "ingress_controller": "traefik",
+            "ingress_class_name": "traefik",
+            "fqdn": "python.localhost.dataplanes.pro",
+            "annotations": ""
+        }
+    },
+    "bwce_capability_config": {
+        "enabled": true,
+        "provision_per_dataplane": true,
+        "capability_version": "1.5.0",
+        "buildtype_version": "6.12.0-HF1",
+        "storage_resource_name": "dpstorage",
+        "ingress_resource_name": "dpingress",
+        "ingress_class_name": "traefik",
+        "ingress_controller_name": "traefik",
+        "enable_fluentbit": true,
+        "timeout_seconds": 600,
+        "wait_for_green": false,
+        "max_wait_seconds": 300,
+        "poll_interval_seconds": 15
+    },
+    "flogo_capability_config": {
+        "enabled": true,
+        "provision_per_dataplane": true,
+        "capability_version": "1.15.0",
+        "storage_resource_name": "dpstorage",
+        "ingress_resource_name": "dpingress",
+        "ingress_class_name": "traefik",
+        "ingress_controller_name": "traefik",
+        "enable_fluentbit": true,
+        "timeout_seconds": 600,
+        "wait_for_green": false,
+        "max_wait_seconds": 300,
+        "poll_interval_seconds": 15
+    },
+    "combined_capability_status_check": {
+        "enabled": true,
+        "initial_wait_seconds": 15,
+        "max_wait_seconds": 300,
+        "poll_interval_seconds": 15
+    },
+    "app_deployment_config": {
+        "enabled": true,
+        "start_after_deploy": true,
+        "app_folder": "apps_to_deploy",
+        "bwce_apps": [
+            {
+                "app_file_name": "BWCE_TimerLog.application.ear",
+                "app_name": "BWCETimerLog",
+                "make_public": false,
+                "scale_instances": 1,
+                "deploy_to_dataplanes": ["Dp-Auto-Test"]
+            }
+        ],
+        "flogo_apps": [
+            {
+                "app_file_name": "flogofailureapp.flogo",
+                "app_name": "FlogoFailureApp",
+                "build_name": "flogorest",
+                "contrib_names": ["General"],
+                "tags": [],
+                "make_public": false,
+                "scale_instances": 1,
+                "enable_service_mesh": false,
+                "deploy_to_dataplanes": ["Dp-Auto-Test"]
+            }
+        ]
+    }
+}
