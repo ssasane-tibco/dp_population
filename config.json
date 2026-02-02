@@ -6,8 +6,8 @@
         "password": "Tibco@2024"
     },
     "target_prefixes": [
-        {"prefix": "pre", "user_email": "use@tibco.com"},
-        {"prefix": "pre1", "user_email": "use1@tibco.com"}
+        {"prefix": "prefix1", "user_email": "user1@tibco.com"},
+        {"prefix": "prefix2", "user_email": "user2@tibco.com"}
     ],
     "new_user_details": {
         "firstName": "Tom",

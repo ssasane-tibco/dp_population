@@ -19,7 +19,7 @@ source .venv/bin/activate
 ./install_requirements.py
 
 # Step 5: Make chromedriver executable (update the path if needed)
-chmod +x /home/ubuntu/.wdm/drivers/chromedriver/linux64/144.0.7559.96/chromedriver-linux64/chromedriver
+chmod +x /home/ubuntu/.wdm/drivers/chromedriver/linux64/*/chromedriver-linux64/chromedriver
 
 # Step 6: Run main.py
 python3 main.py
