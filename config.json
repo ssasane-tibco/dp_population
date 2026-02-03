@@ -3,7 +3,7 @@
     "idp_host": "https://admin.cp1-my.localhost.dataplanes.pro",
     "credentials": {
         "username": "cp-test@tibco.com",
-        "password": "Tibco@2024"
+        "password": ""
     },
     "target_prefixes": [
         {"prefix": "prefix1", "user_email": "user1@tibco.com"},
@@ -12,7 +12,7 @@
     "new_user_details": {
         "firstName": "Tom",
         "lastName": "Krause",
-        "password": "Tibco@2025"
+        "password": ""
     },
     "user_query_params": {
         "order-by": "",
