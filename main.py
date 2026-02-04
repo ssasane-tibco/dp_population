@@ -172,7 +172,7 @@ def main():
                             accept_invite_path = os.path.join(script_dir, "accept_invite.py")
 
                             result = subprocess.run([sys.executable, accept_invite_path, invite_email],
-                                                  capture_output=True, text=True, cwd=script_dir)
+                                                    capture_output=True, text=True, cwd=script_dir)
 
                             if result.stdout:
                                 print("\n" + "-"*20 + " SUBPROCESS OUTPUT " + "-"*20)
@@ -481,7 +481,7 @@ if __name__ == "__main__":
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description='CP Automation - User Invitation Workflow')
     parser.add_argument('--config', type=str, default='config.json',
-                      help='Configuration file path (default: config.json)')
+                        help='Configuration file path (default: config.json)')
 
     args = parser.parse_args()
 
