@@ -11,8 +11,10 @@ This guide provides basic instructions for setting up and running the automation
    fi
    source .venv/bin/activate
 5. ./install_requirements.py (run twice if needed)
-6. chmod +x /home/ubuntu/.wdm/drivers/chromedriver/linux64/144.0.7559.96/chromedriver-linux64/chromedriver
-7. python3 main.py
+6. Verify beautifulsoup4 installation: pip install beautifulsoup4==4.12.2
+7. Make chromedriver executable (will be created after first run):
+   chmod +x /home/ubuntu/.wdm/drivers/chromedriver/linux64/*/chromedriver-linux64/chromedriver 2>/dev/null || true
+8. Run main.py using: python main.py (NOT python3, use 'python' when venv is active)
 
 # Or simply run the provided script:
 ./run_all.sh
@@ -37,6 +39,7 @@ This guide provides basic instructions for setting up and running the automation
   This will perform user invitation, registration, dataplane setup, capability provisioning, and application deployment.
 
   > **Note:** Always use new values for `target_prefix` and `invite_user_email` in `config.json` before running main.py.
+  > **Important:** When running inside the virtual environment, use `python` command (not `python3`) to ensure you're using the venv's Python interpreter with all installed packages.
 
 ## Deploying Applications Only
 - To deploy applications (BWCE/Flogo) without full setup, run:

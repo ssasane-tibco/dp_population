@@ -25,4 +25,8 @@ soupsieve>=2.5          # CSS selector library
 # -------------------------------------
 selenium==4.16.0        # Browser automation for user registration
 webdriver-manager==4.0.1  # Automatic ChromeDriver management
+# Web Automation (for EULA acceptance)
+# -------------------------------------
+selenium==4.16.0        # Browser automation for user registration
+webdriver-manager==4.0.1  # Automatic ChromeDriver management
 
