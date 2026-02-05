@@ -1,0 +1,384 @@
+apiVersion: v1
+kind: generic-runner
+meta:
+  guiEnv:
+    note: deploy-gke-instance-tp-1.0.209
+    GUI_PIPELINE_LOG_DEBUG: false
+    GUI_GCP_REGION: us-central1-b
+    GUI_GCP_INSTANCE_TYPE: n2d-standard-16
+    GUI_GCP_INSTANCE_NAME: ins-ai-agent
+    GUI_GCP_INSTANCE_USER: ubuntu
+    GUI_GCP_PUBLIC_KEY_BASE64: ''
+    GUI_TP_CLUSTER_VERSION: v1.33.3+k3s1
+    GUI_TP_RECIPE_FOLDER_NAME: ''
+    GUI_TP_CONFIG_VERSION_112: false
+    GUI_CP_PLATFORM_BOOTSTRAP_VERSION: ''
+    GUI_CP_PLATFORM_BASE_VERSION: ''
+    GUI_TP_CONFIG_VERSION_113: true
+    GUI_CP_INSTALL_TIBCO_CP_BASE: true
+    GUI_CP_PLATFORM_TIBCO_CP_BASE_VERSION: ''
+    GUI_CP_PLATFORM_TIBCOHUB_VERSION: ''
+    GUI_CP_INSTALL_PLATFORM_TIBCOHUB: true
+    GUI_CP_PLATFORM_MESSAGING_VERSION: ''
+    GUI_CP_INSTALL_PLATFORM_MESSAGING: true
+    GUI_CP_PLATFORM_HAWK_VERSION: ''
+    GUI_CP_INSTALL_PLATFORM_HAWK: true
+    GUI_CP_PLATFORM_INTEGRATION_BW_VERSION: ''
+    GUI_CP_INSTALL_PLATFORM_INTEGRATION_BW: true
+    GUI_CP_PLATFORM_INTEGRATION_FLOGO_VERSION: ''
+    GUI_CP_INSTALL_PLATFORM_INTEGRATION_FLOGO: true
+    GUI_CP_PLATFORM_EVENTPROCESSING_VERSION: ''
+    GUI_CP_INSTALL_PLATFORM_EVENTPROCESSING: true
+    GUI_CP_PLATFORM_AI_AGENT_VERSION: ''
+    GUI_CP_INSTALL_PLATFORM_AI_AGENT: true
+    GUI_PIPELINE_OVERWRITE: true
+    GUI_PIPELINE_OVERWRITE_CERTIFICATE: true
+    GUI_TP_AUTOMATION_SCRIPT_OPTIONS: '1'
+    GUI_TP_K8S_INGRESS_TYPE_CODE: '2'
+    GUI_TP_RECIPE_ZIP_FILE_CONTENT_BASE64: ''
+    GUI_TP_RECIPE_ZIP_FILE_FLATTEN: true
+    GUI_TP_RECIPE_AUTO_GENERATE: true
+    GUI_PIPELINE_CHART_VERSION_PROVISIONER_CONFIG_LOCAL: ^1.0.0
+    GUI_CP_MANAGE_DB_SCHEMA: true
+    GUI_CP_ENABLE_HYBRID_CONNECTIVITY: true
+    GUI_TP_ACTIVATION_SERVER_CONFIG: true
+    GUI_TP_ACTIVATION_SERVER_IP: 10.206.0.3
+    GUI_TP_ACTIVATION_SERVER_PORT: '7070'
+    GUI_TP_ACTIVATION_SERVER_CERT_HOSTNAME: activation-server.c.tibco-platform-cp-development.internal
+    GUI_TP_ACTIVATION_SERVER_FINGER_PRINT: c7c92b090f3cff4fb4d4ea1de1afca9f0acdf45c8e7de8ce3a9f2e30e69ef459
+    GUI_TP_ACTIVATION_ZIP_FILE_BASE64: ''
+    GUI_TP_AUTO_GITHUB_REPO_NAME: github.com/tibco/platform-provisioner
+    GUI_TP_AUTO_GITHUB_REPO_PATH: docs/recipes/automation/tp-setup/bootstrap
+    GUI_TP_AUTO_GITHUB_REPO_BRANCH: main
+    GUI_TP_AUTO_ACTIVE_USER: true
+    GUI_TP_AUTO_ENABLE_BMDP: false
+    GUI_TP_AUTO_ENABLE_DP: true
+    GUI_TP_AUTO_ENABLE_CONFIG_O11Y: true
+    GUI_TP_AUTO_ENABLE_FLOGO: true
+    GUI_TP_AUTO_ENABLE_BWCE: false
+    GUI_TP_AUTO_ENABLE_BW5CE: false
+    GUI_TP_AUTO_ENABLE_TIBCOHUB: false
+    GUI_TP_AUTO_ENABLE_EMS: false
+    GUI_TP_AUTO_ENABLE_PULSAR: false
+    GUI_TP_AUTO_S3_BUCKET_NAME: platform-provisioner-664529841144-us-west-2-reports
+    GUI_GCP_INSTANCE_UBUNTU_CREATE: false
+    GUI_GCP_INSTANCE_UBUNTU_INIT: true
+    GUI_GCP_INSTANCE_INSTALL_K3S: false
+    GUI_GCP_INSTANCE_CUSTOMIZED_TP_DISABLE: true
+    GUI_GCP_INSTANCE_INSTALL_TP: false
+    GUI_GCP_INSTANCE_INSTALL_TP_AI: false
+    GUI_GCP_INSTANCE_USE_TMUX: false
+    GUI_GCP_INSTANCE_UPLOAD_REPORT: false
+    GUI_TP_AI_ENABLE_CP_MCP_SERVER: false
+    GUI_TP_AI_ENABLE_O11Y_MCP_SERVER: false
+    GUI_TP_AI_ENABLE_BW_MCP_SERVER: false
+    GUI_TP_AI_ENABLE_FLOGO_MCP_SERVER: false
+    GUI_TP_AI_ENABLE_CP_AGENT: true
+    GUI_TP_WEB_SERVER_DEPLOYMENT_IMAGE_TAG: ''
+    GUI_ENABLE_AI_AGENT_CONFIG: false
+    GUI_PROVISION_AI_TENANT: false
+  globalEnvVariable:
+    REPLACE_RECIPE: true
+    PIPELINE_LOG_DEBUG: false
+    PIPELINE_CHECK_DOCKER_STATUS: false
+    PIPELINE_INITIAL_ASSUME_ROLE: true
+    GITHUB_TOKEN: ${GITHUB_TOKEN:-$(cat /tmp/secret-github/GITHUB_TOKEN)}
+    OPENAI_API_KEY: ${OPENAI_API_KEY:-$(cat /tmp/secret-github/OPENAI_API_KEY)}
+    LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-$(cat /tmp/secret-github/LANGSMITH_API_KEY)}
+    LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-$(cat /tmp/secret-github/LANGFUSE_SECRET_KEY)}
+    LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-$(cat /tmp/secret-github/LANGFUSE_PUBLIC_KEY)}
+    GCP_REGION: ${GUI_GCP_REGION:-"us-central1-b"}
+    GCP_INSTANCE_TYPE: ${GUI_GCP_INSTANCE_TYPE:-"e2-standard-8"}
+    GCP_INSTANCE_NAME: ${GUI_GCP_INSTANCE_NAME:-""}
+    PIPELINE_OVERWRITE: ${GUI_PIPELINE_OVERWRITE:-true}
+    PIPELINE_OVERWRITE_CERTIFICATE: ${GUI_PIPELINE_OVERWRITE_CERTIFICATE:-true}
+    GCP_INSTANCE_USER: ${GUI_GCP_INSTANCE_USER:-"ubuntu"}
+    GCP_PUBLIC_KEY_BASE64: ${GUI_GCP_PUBLIC_KEY_BASE64:-""}
+    TP_CLUSTER_VERSION: ${GUI_TP_CLUSTER_VERSION:-"v1.31.4+k3s1"}
+    CP_PLATFORM_BOOTSTRAP_VERSION: ${GUI_CP_PLATFORM_BOOTSTRAP_VERSION:-""}
+    CP_PLATFORM_BASE_VERSION: ${GUI_CP_PLATFORM_BASE_VERSION:-""}
+    CP_INSTALL_TIBCO_CP_BASE: ${GUI_CP_INSTALL_TIBCO_CP_BASE:-true}
+    CP_PLATFORM_TIBCO_CP_BASE_VERSION: ${GUI_CP_PLATFORM_TIBCO_CP_BASE_VERSION:-""}
+    CP_PLATFORM_TIBCOHUB_VERSION: ${GUI_CP_PLATFORM_TIBCOHUB_VERSION:-""}
+    CP_INSTALL_PLATFORM_TIBCOHUB: ${GUI_CP_INSTALL_PLATFORM_TIBCOHUB:-true}
+    CP_PLATFORM_MESSAGING_VERSION: ${GUI_CP_PLATFORM_MESSAGING_VERSION:-""}
+    CP_INSTALL_PLATFORM_MESSAGING: ${GUI_CP_INSTALL_PLATFORM_MESSAGING:-true}
+    CP_PLATFORM_HAWK_VERSION: ${GUI_CP_PLATFORM_HAWK_VERSION:-""}
+    CP_INSTALL_PLATFORM_HAWK: ${GUI_CP_INSTALL_PLATFORM_HAWK:-true}
+    CP_PLATFORM_INTEGRATION_BW_VERSION: ${GUI_CP_PLATFORM_INTEGRATION_BW_VERSION:-""}
+    CP_INSTALL_PLATFORM_INTEGRATION_BW: ${GUI_CP_INSTALL_PLATFORM_INTEGRATION_BW:-true}
+    CP_PLATFORM_INTEGRATION_FLOGO_VERSION: ${GUI_CP_PLATFORM_INTEGRATION_FLOGO_VERSION:-""}
+    CP_INSTALL_PLATFORM_INTEGRATION_FLOGO: ${GUI_CP_INSTALL_PLATFORM_INTEGRATION_FLOGO:-true}
+    CP_PLATFORM_EVENTPROCESSING_VERSION: ${GUI_CP_PLATFORM_EVENTPROCESSING_VERSION:-""}
+    CP_INSTALL_PLATFORM_EVENTPROCESSING: ${GUI_CP_INSTALL_PLATFORM_EVENTPROCESSING:-true}
+    CP_PLATFORM_AI_AGENT_VERSION: ${GUI_CP_PLATFORM_AI_AGENT_VERSION:-""}
+    CP_INSTALL_PLATFORM_AI_AGENT: ${GUI_CP_INSTALL_PLATFORM_AI_AGENT:-true}
+    CP_MANAGE_DB_SCHEMA: ${GUI_CP_MANAGE_DB_SCHEMA:-true}
+    CP_ENABLE_HYBRID_CONNECTIVITY: ${GUI_CP_ENABLE_HYBRID_CONNECTIVITY:-true}
+    TP_AUTOMATION_SCRIPT_OPTIONS: ${GUI_TP_AUTOMATION_SCRIPT_OPTIONS:-"1"}
+    TP_K8S_INGRESS_TYPE_CODE: ${GUI_TP_K8S_INGRESS_TYPE_CODE:-"2"}
+    TP_RECIPE_FOLDER_NAME: ${GUI_TP_RECIPE_FOLDER_NAME:-""}
+    TP_RECIPE_ZIP_FILE_NAME: ${GUI_TP_RECIPE_ZIP_FILE_NAME:-"recipe.zip"}
+    TP_RECIPE_ZIP_FILE_CONTENT_BASE64: ${GUI_TP_RECIPE_ZIP_FILE_CONTENT_BASE64:-""}
+    TP_RECIPE_ZIP_FILE_FLATTEN: ${GUI_TP_RECIPE_ZIP_FILE_FLATTEN:-true}
+    TP_RECIPE_AUTO_GENERATE: ${GUI_TP_RECIPE_AUTO_GENERATE:-true}
+    PIPELINE_CHART_VERSION_PROVISIONER_CONFIG_LOCAL: ${GUI_PIPELINE_CHART_VERSION_PROVISIONER_CONFIG_LOCAL:-"^1.0.0"}
+    CP_ENABLE_AI_MCP: ${GUI_TP_AI_ENABLE_CP_MCP_SERVER:-true}
+    CP_ENABLE_AI_BW_MCP: ${GUI_TP_AI_ENABLE_BW_MCP_SERVER:-true}
+    CP_ENABLE_AI_FLOGO_MCP: ${GUI_TP_AI_ENABLE_FLOGO_MCP_SERVER:-true}
+    CP_ENABLE_AI_O11Y_MCP: ${GUI_TP_AI_ENABLE_O11Y_MCP_SERVER:-true}
+    TP_WEB_SERVER_DEPLOYMENT_IMAGE_TAG: ${GUI_TP_WEB_SERVER_DEPLOYMENT_IMAGE_TAG:-""}
+    ENABLE_AI_AGENT_CONFIG: ${GUI_ENABLE_AI_AGENT_CONFIG:-false}
+    PROVISION_AI_TENANT: ${GUI_PROVISION_AI_TENANT:-false}
+    TP_AI_MCP_TRANSPORT: streamable-http
+    TP_AI_LANGSMITH_TRACING: true
+    TP_AI_LANGSMITH_ENDPOINT: https://api.smith.langchain.com
+    TP_AI_LANGSMITH_API_KEY: ${LANGSMITH_API_KEY}
+    TP_AI_LANGSMITH_PROJECT: cp-ai-agent-gcp
+    TP_AI_LANGFUSE_ENABLED: true
+    TP_AI_LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY}
+    TP_AI_LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY}
+    TP_AI_LANGFUSE_HOST: https://langfuse-test.tibco.systems
+    TP_ACTIVATION_SERVER_CONFIG: ${GUI_TP_ACTIVATION_SERVER_CONFIG:-true}
+    TP_ACTIVATION_SERVER_IP: ${GUI_TP_ACTIVATION_SERVER_IP:-""}
+    TP_ACTIVATION_SERVER_PORT: ${GUI_TP_ACTIVATION_SERVER_PORT:-"7070"}
+    TP_ACTIVATION_SERVER_CERT_HOSTNAME: ${GUI_TP_ACTIVATION_SERVER_CERT_HOSTNAME:-""}
+    TP_ACTIVATION_SERVER_FINGER_PRINT: ${GUI_TP_ACTIVATION_SERVER_FINGER_PRINT:-""}
+    TP_ACTIVATION_ZIP_FILE_BASE64: ${GUI_TP_ACTIVATION_ZIP_FILE_BASE64:-""}
+    TP_AUTO_GITHUB_REPO_NAME: ${GUI_TP_AUTO_GITHUB_REPO_NAME:-"github.com/TIBCOSoftware/platform-provisioner"}
+    TP_AUTO_GITHUB_REPO_PATH: ${GUI_TP_AUTO_GITHUB_REPO_PATH:-"docs/recipes/automation/tp-setup/bootstrap"}
+    TP_AUTO_GITHUB_REPO_BRANCH: ${GUI_TP_AUTO_GITHUB_REPO_BRANCH:-"provisioner-config-local-1.1.16"}
+    TP_AUTO_ACTIVE_USER: ${GUI_TP_AUTO_ACTIVE_USER:-true}
+    TP_AUTO_ENABLE_DP: ${GUI_TP_AUTO_ENABLE_DP:-true}
+    TP_AUTO_ENABLE_BMDP: ${GUI_TP_AUTO_ENABLE_BMDP:-false}
+    TP_AUTO_ENABLE_CONFIG_O11Y: ${GUI_TP_AUTO_ENABLE_CONFIG_O11Y:-true}
+    TP_AUTO_ENABLE_FLOGO: ${GUI_TP_AUTO_ENABLE_FLOGO:-true}
+    TP_AUTO_ENABLE_BWCE: ${GUI_TP_AUTO_ENABLE_BWCE:-true}
+    TP_AUTO_ENABLE_BW5CE: ${GUI_TP_AUTO_ENABLE_BW5CE:-true}
+    TP_AUTO_ENABLE_TIBCOHUB: ${GUI_TP_AUTO_ENABLE_TIBCOHUB:-true}
+    TP_AUTO_ENABLE_EMS: ${GUI_TP_AUTO_ENABLE_EMS:-true}
+    TP_AUTO_ENABLE_PULSAR: ${GUI_TP_AUTO_ENABLE_PULSAR:-true}
+    TP_AUTO_S3_BUCKET_NAME: ${GUI_TP_AUTO_S3_BUCKET_NAME:-"platform-provisioner-664529841144-us-west-2-reports"}
+    GCP_INSTANCE_UBUNTU_CREATE: ${GUI_GCP_INSTANCE_UBUNTU_CREATE:-true}
+    GCP_INSTANCE_UBUNTU_INIT: ${GUI_GCP_INSTANCE_UBUNTU_INIT:-true}
+    GCP_INSTANCE_INSTALL_K3S: ${GUI_GCP_INSTANCE_INSTALL_K3S:-true}
+    GCP_INSTANCE_INSTALL_CUSTOMIZED_TP: $([ "${GUI_GCP_INSTANCE_CUSTOMIZED_TP_DISABLE:-false}" = "true" ] && echo false || echo true)
+    GCP_INSTANCE_INSTALL_TP: ${GUI_GCP_INSTANCE_INSTALL_TP:-true}
+    GCP_INSTANCE_USE_TMUX: ${GUI_GCP_INSTANCE_USE_TMUX:-true}
+    GCP_INSTANCE_UPLOAD_REPORT: ${GUI_GCP_INSTANCE_UPLOAD_REPORT:-true}
+    PIPELINE_PEM_KEY_PATH: /tmp/tibco
+  tools:
+    yq: '4.40'
+tasks:
+  - condition: true
+    name: prepare-pipeline
+    script:
+      content: |
+        # prepare ssh key
+        mkdir -p ~/.ssh
+        cat /tmp/secret-github/PIPELINE_SSH_PRIVATE_KEY > ${PIPELINE_PEM_KEY_PATH}
+        chmod 400 ${PIPELINE_PEM_KEY_PATH}
+
+        echo "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU0ybzJaU3pPWE5zQU5pQjhpMDFKVUR5Z3BsYUlhekxNbUdxL0xrQlpFVVUgdGliY29AY2xvdWQuY29tCg==" | base64 -d >> "${PIPELINE_PEM_KEY_PATH}.pub"
+  - condition: true
+    name: dp-population
+    script:
+      content: |
+        if [[ -z "${GCP_PROJECT_ID}" ]]; then
+          echo "GCP_PROJECT_ID is not set. Exiting..."
+          exit 1
+        fi
+
+        check_instance_and_ssh() {
+          local project_id=$1
+          local zone=$2
+          local instance_name=$3
+          local ssh_user=$4
+
+          echo "Checking instance status for: $instance_name"
+
+          while true; do
+            status=$(gcloud compute instances describe "$instance_name" \
+              --project="$project_id" \
+              --zone="$zone" \
+              --format="value(status)")
+
+            if [[ "$status" == "RUNNING" ]]; then
+              echo "Instance $instance_name is RUNNING. Proceeding with SSH..."
+              break
+            else
+              echo "Instance $instance_name is in status: $status. Waiting..."
+              sleep 5
+            fi
+          done
+        }
+
+        # wait for ssh to be available
+        until gcloud compute ssh ${GCP_INSTANCE_USER}@${GCP_INSTANCE_NAME} \
+          --zone ${GCP_REGION} --project ${GCP_PROJECT_ID} \
+          --ssh-key-file="${PIPELINE_PEM_KEY_PATH}" \
+          --quiet --command 'true' \
+          -- -o StrictHostKeyChecking=no -o ConnectTimeout=5 -o ConnectionAttempts=1 \
+          >/dev/null 2>&1; do
+          echo "⏳ waiting for sshd to accept connections..."
+          sleep 5
+        done
+
+        git clone https://github.com/ssasane-tibco/api_automation_dataPopulation.git /tmp/api_automation_data
+        
+        # Define your local folder name and destination
+        export LOCAL_REPO_PATH="/tmp/api_automation_data"
+        export REMOTE_DESTINATION="~/tp"
+
+        # Run the recursive copy
+        gcloud compute scp --recurse ${LOCAL_REPO_PATH} \
+            ${GCP_INSTANCE_USER}@${GCP_INSTANCE_NAME}:${REMOTE_DESTINATION} \
+            --ssh-key-file="${PIPELINE_PEM_KEY_PATH}" \
+            --zone ${GCP_REGION} \
+            --project ${GCP_PROJECT_ID}
+        
+        export _config_json="config.json"
+        chmod u+x ${_config_json}
+        
+        gcloud compute scp ${_config_json} ${GCP_INSTANCE_USER}@${GCP_INSTANCE_NAME}:~/tp/api_automation_data/${_config_json} \
+              --ssh-key-file="${PIPELINE_PEM_KEY_PATH}" \
+              --zone ${GCP_REGION} --project ${GCP_PROJECT_ID}        
+        
+        gcloud compute ssh ${GCP_INSTANCE_USER}@${GCP_INSTANCE_NAME} --quiet \
+          --zone ${GCP_REGION} --project ${GCP_PROJECT_ID} \
+          --ssh-key-file="${PIPELINE_PEM_KEY_PATH}" \
+          --command "sudo chmod -R 777 ~/tp/api_automation_data && cd ~/tp/api_automation_data && ./run_all.sh"              
+        
+        
+        check_instance_and_ssh "${GCP_PROJECT_ID}" "${GCP_REGION}" "${GCP_INSTANCE_NAME}" "${GCP_INSTANCE_USER}"
+        echo "done running instance initial script********************"
+    payload:
+      fileName: config.json
+      content: |
+        {
+          "admin_host": "https://admin.cp1-my.localhost.dataplanes.pro",
+          "idp_host": "https://admin.cp1-my.localhost.dataplanes.pro",
+          "credentials": {
+            "username": "cp-test@tibco.com",
+            "password": "Tibco@2024"
+          },
+          "target_prefixes": [
+            {"prefix": "prefix1", "user_email": "user1@tibco.com"},
+            {"prefix": "prefix2", "user_email": "user2@tibco.com"}
+          ],
+          "new_user_details": {
+            "firstName": "Tom",
+            "lastName": "Krause",
+            "password": "Tibco@2025"
+          },
+          "user_query_params": {
+            "order-by": "",
+            "page": "1",
+            "limit": "20",
+            "person": ""
+          },
+          "dataplane_config": {
+            "dpCount": 1,
+            "name": "Dp-Auto-Test",
+            "description": "Automated dataplane registration",
+            "namespace": "mydp-ns",
+            "serviceAccountName": "mydp-sa",
+            "helmResourceInstanceId": "",
+            "isFluentBitEnabled": true,
+            "enableClusterScopedPerm": true,
+            "customContainerRegistry": false,
+            "helmChartName": "dp-core-infrastructure",
+            "helmChartVersion": "1.2.0",
+            "helmRepoName": "tibco-platform",
+            "helmRepoUrl": "https://tibcosoftware.github.io/tp-helm-charts"
+          },
+          "activation_server_config": {
+            "name": "https://na1pcpfhelmcm01.tibco.com:7070",
+            "url": "https://na1pcpfhelmcm01.tibco.com:7070",
+            "version": "1.8.0"
+          },
+          "dataplane_status_check": {
+            "enabled": true,
+            "max_wait_seconds": 600,
+            "poll_interval_seconds": 20
+          },
+          "dataplane_resources_config": {
+            "create_resources": true,
+            "storage": {
+              "name": "dpstorage",
+              "description": "Dataplane Storage",
+              "storage_class_name": "hostpath"
+            },
+            "ingress": {
+              "name": "dpingress",
+              "ingress_controller": "traefik",
+              "ingress_class_name": "traefik",
+              "fqdn": "python.localhost.dataplanes.pro",
+              "annotations": ""
+            }
+          },
+          "bwce_capability_config": {
+            "enabled": true,
+            "provision_per_dataplane": true,
+            "capability_version": "1.5.0",
+            "buildtype_version": "6.12.0-HF1",
+            "storage_resource_name": "dpstorage",
+            "ingress_resource_name": "dpingress",
+            "ingress_class_name": "traefik",
+            "ingress_controller_name": "traefik",
+            "enable_fluentbit": true,
+            "timeout_seconds": 600,
+            "wait_for_green": false,
+            "max_wait_seconds": 300,
+            "poll_interval_seconds": 15
+          },
+          "flogo_capability_config": {
+            "enabled": true,
+            "provision_per_dataplane": true,
+            "capability_version": "1.15.0",
+            "storage_resource_name": "dpstorage",
+            "ingress_resource_name": "dpingress",
+            "ingress_class_name": "traefik",
+            "ingress_controller_name": "traefik",
+            "enable_fluentbit": true,
+            "timeout_seconds": 600,
+            "wait_for_green": false,
+            "max_wait_seconds": 300,
+            "poll_interval_seconds": 15
+          },
+          "combined_capability_status_check": {
+            "enabled": true,
+            "initial_wait_seconds": 15,
+            "max_wait_seconds": 300,
+            "poll_interval_seconds": 15
+          },
+          "app_deployment_config": {
+            "enabled": true,
+            "start_after_deploy": true,
+            "app_folder": "apps_to_deploy",
+            "bwce_apps": [
+              {
+                "app_file_name": "BWCE_TimerLog.application.ear",
+                "app_name": "BWCETimerLog",
+                "make_public": false,
+                "scale_instances": 1,
+                "deploy_to_dataplanes": ["Dp-Auto-Test"]
+              }
+            ],
+            "flogo_apps": [
+              {
+                "app_file_name": "flogofailureapp.flogo",
+                "app_name": "FlogoFailureApp",
+                "build_name": "flogorest",
+                "contrib_names": ["General"],
+                "tags": [],
+                "make_public": false,
+                "scale_instances": 1,
+                "enable_service_mesh": false,
+                "deploy_to_dataplanes": ["Dp-Auto-Test"]
+              }
+            ]
+          }
+        }
+        
+        
